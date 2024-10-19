@@ -4,7 +4,10 @@
   "description": "Project Management System",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc -p tsconfig.json",
+    "dev": "nodemon --exec 'ts-node -r tsconfig-paths/register src/main.ts'",
+    "lint": "./node_modules/.bin/eslint"
   },
   "repository": {
     "type": "git",
@@ -17,10 +20,12 @@
   },
   "homepage": "https://github.com/AdedamolaCoal/pms-be#readme",
   "dependencies": {
+    "body-parser": "^1.20.3",
     "express": "^4.21.1",
     "morgan": "^1.10.0",
     "pg": "^8.13.0",
     "reflect-metadata": "^0.2.2",
+    "tsconfig-paths": "^4.2.0",
     "typeorm": "^0.3.20"
   },
   "devDependencies": {

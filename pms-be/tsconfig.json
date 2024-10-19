@@ -1,12 +1,17 @@
 {
   "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@components/*": [
+        "components/*"
+      ],
+    },
     "module": "commonjs",
     "moduleResolution": "node",
     "pretty": true,
     "sourceMap": false,
     "target": "ESNext",
     "outDir": "./dist",
-    "baseUrl": "./src",
     "noImplicitAny": false,
     "esModuleInterop": true,
     "removeComments": true,
@@ -20,12 +25,12 @@
   },
   "include": [
     "src/**/*.ts",
-    "src/**/*.json"
+    "src/**/*.json",
   ],
   "exclude": [
     "node_modules"
   ],
   "files": [
     "node_modules/@types/node/index.d.ts"
-  ]
+  ],
 }
