@@ -4,16 +4,37 @@ import { Request, Response } from "express";
 import { RolesService } from "./roles_service";
 
 export class RolesController extends BaseController {
+	// create role
 	public async addHandler(req: Request, res: Response): Promise<void> {
 		const role = req.body;
 		const service = new RolesService();
 		const result = await service.create(role);
-		res.status(result.statusCode).json(result);
-		return;
+		res.status(result.statusCode).json();
 	}
-	public getAllHandler(req: Request, res: Response) {}
-	public getDetailHandler(req: Request, res: Response) {}
-	public async updateHandler(req: Request, res: Response) {}
+
+	// get all roles
+	public async getAllHandler(req: Request, res: Response): Promise<void> {
+		const service = new RolesService();
+		const result = await service.findAll(req.query);
+		res.status(result.statusCode).json(result);
+	}
+
+	// get one role
+	public async getDetailHandler(req: Request, res: Response): Promise<void> {
+		const service = new RolesService();
+		const result = await service.findOne(req.params.id);
+		res.status(result.statusCode).json(result);
+	}
+
+	// update role
+	public async updateHandler(req: Request, res: Response): Promise<void> {
+		const role = req.body;
+		const service = new RolesService();
+		const result = await service.update(req.params.id, role);
+		res.status(result.statusCode).json(result);
+	}
+
+	// delete role
 	public async deleteHandler(req: Request, res: Response) {}
 }
 

@@ -8,6 +8,11 @@ export interface IValidatorError {
 	location?: string;
 }
 
+/**
+ *
+ * @param validations : takes the arguments from express-validator for the particular route
+ * @returns : It sanitizes based on the validations set for each routes.
+ */
 export const validate = (validations: Array<any>) => {
 	return async (
 		req: express.Request,
@@ -25,11 +30,18 @@ export const validate = (validations: Array<any>) => {
 		}
 
 		// if there are errors, return them
-		const errorMessages = errors.array().map((error: IValidatorError) => {
-			const obj = {};
-			obj[error.path] = error.message;
-			return obj;
+		// const errorMessages = errors.array().map((error: IValidatorError) => {
+		// 	const obj = {};
+		// 	obj[error.path] = error.message;
+		// 	return obj;
+		// });
+		// If there are errors, format them and return a response
+		const errorMessages = errors.array().map((error) => {
+			return { [error.type]: error.msg };
 		});
-		return next({ statusCode: 400, status: "error", errors: errorMessages });
+		res
+			.status(400)
+			.json({ statusCode: 400, status: "error", errors: errorMessages });
+		return next();
 	};
 };

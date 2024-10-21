@@ -18,7 +18,7 @@ export class Roles {
 	description: string;
 
 	@Column({ type: "text" })
-	roles: string;
+	permissions: string;
 
 	@CreateDateColumn()
 	created_at: Date;

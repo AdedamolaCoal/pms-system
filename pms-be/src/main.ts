@@ -11,6 +11,10 @@ process.on("uncaughtException", (error: Error) => {
 ${process.pid}:`,
 		error
 	);
+
+	process.on("unhandledRejection", (error: Error) => {
+		console.error(error);
+	});
 	// Close any open connections or resources
 	server.closeServer();
 	setTimeout(() => {

@@ -15,8 +15,8 @@ export class ExpressServer {
 		const app = express();
 
 		app.use(morgan("tiny"));
-		app.use(bodyParser.json());
-		app.use(bodyParser.urlencoded({ extended: true }));
+		app.use(express.json());
+		app.use(express.urlencoded({ extended: true }));
 
 		app.get("/ping", (req, res) => {
 			res.send("ping!");
