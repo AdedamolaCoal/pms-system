@@ -213,7 +213,8 @@ export class BaseService<T> {
 				for (const field in queryParams) {
 					if (queryParams.hasOwnProperty(field)) {
 						const value = queryParams[field];
-						query.andWhere(`${field} = ${value}`);
+						// parameterized approach to safely insert the value, or else result will be 'column not found'
+						query.andWhere(`${field} = :${field}`, { [field]: value });
 					}
 				}
 				data = await query.getMany();
@@ -289,7 +290,7 @@ export class BaseService<T> {
 			// return the results
 			return data;
 		} catch (error) {
-			console.log(`Error while execcuting custom query: ${query}`, error);
+			console.log(`Error while executing custom query: ${query}`, error);
 			return [];
 		}
 	}

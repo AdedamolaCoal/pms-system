@@ -4,8 +4,15 @@
     "paths": {
       "@components/*": [
         "components/*"
-      ],
+      ]
     },
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/types"
+    ],
+    "types": [
+      "node"
+    ],
     "module": "commonjs",
     "moduleResolution": "node",
     "pretty": true,
@@ -26,11 +33,9 @@
   "include": [
     "src/**/*.ts",
     "src/**/*.json",
+    "src/custom.d.ts"
   ],
   "exclude": [
     "node_modules"
-  ],
-  "files": [
-    "node_modules/@types/node/index.d.ts"
-  ],
+  ]
 }

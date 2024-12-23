@@ -54,6 +54,7 @@ export class DatabaseUtil {
 					entities: [Roles, Users, Comments, Projects, Tasks],
 					synchronize: true,
 					logging: false,
+					poolSize: 10,
 				});
 				await AppSource.initialize();
 				DatabaseUtil.connection = AppSource;
